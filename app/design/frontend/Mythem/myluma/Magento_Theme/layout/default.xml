@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="new_head_blocks"/>
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_width" xsi:type="number">100</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- <referenceBlock name="footer_links" remove="true"/> -->
+        <referenceBlock name="header.links" remove="true"/>
+        <referenceBlock name="top.search" remove="true" />
+        <move element="form.subscribe" destination="header-wrapper" before="minicart"></move>
+        <referenceContainer name="header.panel.wrapper" remove="true" />
+
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="pwspkHelloWord" template="Magento_Theme::Html/HelloWord.phtml">
+             <arguments>
+                <argument name="css_class" xsi:type="string">block</argument>
+                <argument name="messages" xsi:type="string">Hello, Akshay Shah</argument>
+            </arguments>
+            </block>   
+        </referenceContainer>
+
+        <referenceContainer name="footer">
+            <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe.footer" as="head.subscribe.footer" before="-" template="Magento_Newsletter::subscribe.phtml" ifconfig="newsletter/general/active"/>
+        </referenceContainer>
+    </body>
+</page>
