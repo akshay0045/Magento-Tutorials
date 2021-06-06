@@ -9,7 +9,7 @@
            <label>Mymodule</label>
            <tab>mythememodule</tab>
            <resource>Mythememodule_Mymodule::configuration</resource>
-           <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+           <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General Configuration</label>
                 <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
                      <label>Enable Module</label>
