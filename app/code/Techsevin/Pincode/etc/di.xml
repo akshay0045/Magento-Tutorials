@@ -5,6 +5,13 @@
             <argument name="resourceModel" xsi:type="string">Techsevin\Pincode\Model\ResourceModel\Pincode</argument>
         </arguments>
     </virtualType>
+
+    <virtualType name="TechsevinPincodeGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Techsevin\Pincode\Model\ResourceModel\Pincode\Collection</argument>
+        </arguments>
+    </virtualType>
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">

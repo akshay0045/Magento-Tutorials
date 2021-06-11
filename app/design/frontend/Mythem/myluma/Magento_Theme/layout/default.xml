@@ -21,6 +21,9 @@
                 <argument name="messages" xsi:type="string">Hello, Akshay Shah</argument>
             </arguments>
             </block>   
+
+            <block class="Ambab\Exchange\Block\Exchange" name="exchange.list" template="exchange.phtml">
+            </block>
         </referenceContainer>
 
         <referenceContainer name="footer">
