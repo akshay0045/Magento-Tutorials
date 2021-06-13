@@ -19,7 +19,7 @@ return [
                 'host' => 'localhost',
                 'dbname' => 'db_magento',
                 'username' => 'root',
-                'password' => 'root',
+                'password' => '',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
@@ -43,10 +43,10 @@ return [
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => 'ca3_'
+                'id_prefix' => '030_'
             ],
             'page_cache' => [
-                'id_prefix' => 'ca3_'
+                'id_prefix' => '030_'
             ]
         ],
         'allow_parallel_generation' => false
@@ -81,6 +81,6 @@ return [
         'akshay.magento.com'
     ],
     'install' => [
-        'date' => 'Wed, 02 Jun 2021 16:32:17 +0000'
+        'date' => 'Sun, 13 Jun 2021 10:10:58 +0000'
     ]
 ];

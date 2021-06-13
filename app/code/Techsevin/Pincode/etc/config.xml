@@ -4,6 +4,8 @@
       <pincode>
          <general>
             <active>1</active>
+            <successmessage>Pincode Available</successmessage>
+            <failmessage>Pincode not available</failmessage>
          </general>
       </pincode>
    </default>

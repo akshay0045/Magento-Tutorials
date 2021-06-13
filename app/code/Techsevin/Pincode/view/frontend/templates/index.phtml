@@ -1,14 +1,46 @@
 <?php
 $data = $block->getPincodeData();
+$url = $this->getUrl('pincodechecker');
+echo $url;
 ?>
-<form>
+<form method="post" action="">
   <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name"placeholder="Enter name">
+    <input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter pincode">
   </div>
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+  <span id="pincode-avail"></span>
 </form>
+
+<script type="text/javascript">
+require(['jquery', 'Magento_Ui/js/modal/modal'], function ($, modal) {
+
+     $(document).on('click','#submit', function(e){
+        e.preventDefault();
+          var pincode = $('#pincode').val();
+          if(pincode == "")
+          {
+            alert("Please Enter Pincode");
+            return false;
+          }
+          
+          $.ajax({
+            url: '<?php echo $url ?>',
+            async:false,
+            showLoader: true,
+            type:'POST',
+            data: {pincode:pincode},
+            success: function(result){
+                $('#pincode-avail').html(result);
+            }
+        });
+
+    });
+
+    $('#pincode').keypress(function(e){
+        if(e.which == 13){
+            e.preventDefault();
+            $('#submit').click();
+        }
+    });
+});
+</script>

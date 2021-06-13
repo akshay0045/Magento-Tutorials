@@ -15,6 +15,14 @@
                      <label>Enable Module</label>
                      <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="successmessage" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Success Message</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="failmessage" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Fail Message</label>
+                    <validate>required-entry</validate>
+                </field>
           </group>
        </section>
      </system>
