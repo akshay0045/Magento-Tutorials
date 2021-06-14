@@ -344,6 +344,7 @@ return [
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Rsgitech_News' => 1,
+        'Techsevin_Customerfeedback' => 1,
         'Techsevin_Pincode' => 1,
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
