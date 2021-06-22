@@ -9,10 +9,10 @@
         </referenceBlock>
 
         <!-- <referenceBlock name="footer_links" remove="true"/> -->
-        <referenceBlock name="header.links" remove="true"/>
+        <!-- <referenceBlock name="header.links" remove="true"/> -->
         <referenceBlock name="top.search" remove="true" />
         <move element="form.subscribe" destination="header-wrapper" before="minicart"></move>
-        <referenceContainer name="header.panel.wrapper" remove="true" />
+        <!-- <referenceContainer name="header.panel.wrapper" remove="true" /> -->
 
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template" name="pwspkHelloWord" template="Magento_Theme::Html/HelloWord.phtml">

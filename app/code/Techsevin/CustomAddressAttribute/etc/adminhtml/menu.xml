@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/** Grid menu xml
+ * @category  Techsevin
+ * @package   Techsevin_CustomerAddressAttribute
+ * @author    Techsevin
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://techsevin.com)
+ * @license   https://store.techsevin.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Techsevin_CustomAddressAttribute::mymanager" title="Customer Address Attribute" module="Techsevin_CustomAddressAttribute" sortOrder="10" resource="Techsevin_CustomAddressAttribute::mymanager" />
+
+        <add id="Techsevin_CustomAddressAttribute::settings" title="Settings" translate="title" module="Techsevin_CustomAddressAttribute" parent="Techsevin_CustomAddressAttribute::mymanager" sortOrder="60" dependsOnModule="Techsevin_CustomAddressAttribute" resource="Techsevin_CustomAddressAttribute::settings"/>
+
+        <add id="Techsevin_CustomAddressAttribute::CustomAddressAttribute_config" title="Configuration" translate="title" module="Techsevin_CustomAddressAttribute" parent="Techsevin_CustomAddressAttribute::settings" sortOrder="10" dependsOnModule="Techsevin_CustomAddressAttribute" action="adminhtml/system_config/edit/section/CustomAddressAttribute" resource="Techsevin_CustomAddressAttribute::CustomAddressAttribute_config"/>
+
+    </menu>
+</config>

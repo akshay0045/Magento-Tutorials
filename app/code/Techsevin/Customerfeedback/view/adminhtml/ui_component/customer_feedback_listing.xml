@@ -324,6 +324,36 @@
             </argument>
         </column>
 
+        <column name="is_approved">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Techsevin\Customerfeedback\Ui\Component\Listing\Column\Approvedoptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Website Approved</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">select</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="image" class="Techsevin\Customerfeedback\Ui\Component\Listing\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">title</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+                </item>
+            </argument>
+        </column>
+
         <actionsColumn name="actions" class="Techsevin\Customerfeedback\Ui\Component\Listing\Column\AllCustomerfeedbacksActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

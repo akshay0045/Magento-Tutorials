@@ -1,0 +1,40 @@
+<?php
+$allwebsitefeedback = $block->getAllwebsitefeedback();
+//print_r($allwebsitefeedback->getData());
+
+if(count($allwebsitefeedback)>0){
+
+    ?>
+    <div class="row">
+    <?php
+    foreach ($allwebsitefeedback as $key => $feedback) {
+        /* echo $feedback->getData('customer_name');
+        echo $feedback->getData('customer_subject');
+        echo $feedback->getData('customer_message');
+        echo $feedback->getData('rating');
+        echo $block->getBaseUrl(). "/media/" . $feedback->getData('image'); */
+        ?>
+        
+            <div class="col-sm-4" style="margin-bottom: 15px;">
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-header"><?= $feedback->getData('customer_name') ?></h5>
+                    <img class="card-img-top" src="<?= $block->getBaseUrl(). "/media/" . $feedback->getData('image') ?>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><?=  $feedback->getData('customer_subject'); ?></h5>
+                        <p class="card-text"><?= $feedback->getData('customer_message'); ?></p>
+                        <p class="card-text"><?= $feedback->getData('rating'); ?></p>
+                        
+                    </div>
+                </div>
+            </div>
+        
+        <?php
+
+    }
+    ?>
+    </div>
+    <?php
+
+}
+
+?>

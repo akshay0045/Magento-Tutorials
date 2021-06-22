@@ -2,10 +2,16 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
        <referenceBlock name="footer_links">
-            <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="customerfeedback/general/active" name="customerfeedback-link">
+        <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="customerfeedback/general/active" name="customerfeedback-link">
             <arguments>
                  <argument name="label" xsi:type="string" translate="true">Customer Feedback</argument>
                  <argument name="path" xsi:type="string">customerfeedback</argument>
+            </arguments>
+        </block>
+        <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="customerfeedback/general/active" name="customerfeedback-link2">
+            <arguments>
+                 <argument name="label" xsi:type="string" translate="true">Website Feedback</argument>
+                 <argument name="path" xsi:type="string">websitefeedback</argument>
             </arguments>
         </block>
       </referenceBlock>

@@ -2,6 +2,8 @@
 namespace Techsevin\Customerfeedback\Controller\Index;
 
 use \Techsevin\Customerfeedback\Model\CustomerfeedbackFactory;
+use Magento\Framework\Filesystem;
+use Magento\Framework\App\Filesystem\DirectoryList;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -9,14 +11,22 @@ class Index extends \Magento\Framework\App\Action\Action
 
 	protected $_customerfeedbackFactory;
 
+	protected $_fileUploaderFactory;
+
+	protected $filesystem;
+
 	public function __construct(
 		\Magento\Framework\App\Action\Context $context,
 		\Magento\Framework\View\Result\PageFactory $pageFactory,
+		\Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
+		Filesystem $filesystem,
 		CustomerfeedbackFactory $customerfeedbackFactory
 		)
 	{
 		$this->_pageFactory = $pageFactory;
 		$this->_customerfeedbackFactory = $customerfeedbackFactory;
+		$this->_fileUploaderFactory = $fileUploaderFactory;
+		$this->filesystem = $filesystem;
 		return parent::__construct($context);
 	}
 
@@ -24,9 +34,29 @@ class Index extends \Magento\Framework\App\Action\Action
 	{
 		if ($this->getRequest()->isPost()) {
 
+			$uploader = $this->_fileUploaderFactory->create(['fileId' => 'image']);
+		 
+			$uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
+			
+			$uploader->setAllowRenameFiles(true);
+			
+			$uploader->setFilesDispersion(true);
+
+			$path = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('techsevin/customerfeedback/');
+
+			$result = $uploader->save($path);
+			if (!$result) {
+				throw new LocalizedException(
+					__('File cannot be saved to path: $1', $path)
+				);
+			}
+			$imagePath = 'techsevin/customerfeedback'.$result['file'];
+
 			$input = $this->getRequest()->getPostValue();
 
 			unset($input['form_key']);
+
+			$input['image'] = $imagePath;
 
 			$customerFeedbackData = $this->_customerfeedbackFactory->create();
 
@@ -35,6 +65,7 @@ class Index extends \Magento\Framework\App\Action\Action
 			$this->messageManager->addSuccessMessage(__("Data Inserted Successfully."));
 
             return $this->_redirect('customerfeedback');
+
 		
 		} else {
 
