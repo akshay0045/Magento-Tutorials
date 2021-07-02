@@ -4,6 +4,12 @@
         <script src="Solwin_Cpanel::js/home-slider.js"/>
     </head>
     <referenceContainer name="content">
-        <block class="Techsevin\HelloWorld\Block\Index\Test" name="helloword_index_test" template="Techsevin_HelloWorld::test.phtml" cacheable="false"/>
+        <!-- <block class="Techsevin\HelloWorld\Block\Index\Test" name="helloword_index_test" template="Techsevin_HelloWorld::test.phtml" cacheable="false"/> -->
+        <block name="example-view-model" class="Magento\Framework\View\Element\Template" template="Techsevin_HelloWorld::test.phtml">
+            <arguments>
+                <argument name="view_model"
+                        xsi:type="object">Techsevin\HelloWorld\ViewModel\Custom</argument>
+            </arguments>
+        </block>
     </referenceContainer>
 </page>

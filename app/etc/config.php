@@ -341,6 +341,7 @@ return [
         'Mageplaza_Core' => 1,
         'Mageplaza_Smtp' => 1,
         'Mythememodule_Mymodule' => 1,
+        'PHPCuong_ProductAttributes' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'Rsgitech_News' => 1,
