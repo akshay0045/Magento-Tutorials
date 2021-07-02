@@ -6,7 +6,7 @@ class Brand extends \Magento\Eav\Model\Entity\Attribute\Frontend\AbstractFronten
 {
     public function getValue(\Magento\Framework\DataObject $object)
     {
-        $value = $object->getData($this->getAttribute()->getAttributeCode());
+        $value = ucfirst($object->getData($this->getAttribute()->getAttributeCode()));
         return "<b>$value</b>";
     }
 }
