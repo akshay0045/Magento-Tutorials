@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Helper\Output">
+        <plugin name="techsevin_textlink_around_product_attribute" type="Techsevin\TextLink\Plugin\Catalog\Helper\Output" />
+    </type>
+</config>

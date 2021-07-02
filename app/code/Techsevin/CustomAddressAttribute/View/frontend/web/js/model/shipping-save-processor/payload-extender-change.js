@@ -4,9 +4,9 @@ define(['jquery'], function ($) {
     return function (payload) {
         var customAddressType = $('[name="custom_attributes[custom_address_type]"]').val();
         var shippingAddress = payload.addressInformation.shipping_address;
-        //console.log(shippingAddress);
-        //console.log(customAddressType);
-        //console.log(shippingAddress.customAttributes[0].value);
+        console.log(shippingAddress);
+        console.log(customAddressType);
+        console.log(shippingAddress.customAttributes[0].value);
 
         //if (customAddressType == "" || customAddressType == null) {
             if (shippingAddress.customAttributes == "undefined" || shippingAddress.customAttributes == null) {

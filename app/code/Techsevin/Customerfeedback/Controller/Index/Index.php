@@ -4,6 +4,8 @@ namespace Techsevin\Customerfeedback\Controller\Index;
 use \Techsevin\Customerfeedback\Model\CustomerfeedbackFactory;
 use Magento\Framework\Filesystem;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Controller\ResultFactory;
+
 
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -59,7 +61,7 @@ class Index extends \Magento\Framework\App\Action\Action
 			$input['image'] = $imagePath;
 
 			$customerFeedbackData = $this->_customerfeedbackFactory->create();
-
+			
 			$customerFeedbackData->setData($input)->save();
 
 			$this->messageManager->addSuccessMessage(__("Data Inserted Successfully."));
@@ -68,7 +70,7 @@ class Index extends \Magento\Framework\App\Action\Action
 
 		
 		} else {
-
+			$resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 			return $this->_pageFactory->create();
 
 		}

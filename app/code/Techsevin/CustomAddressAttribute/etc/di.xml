@@ -6,4 +6,12 @@
     <type name="Magento\Checkout\Model\ShippingInformationManagement">
         <plugin name="customaddresstype_address_save_plugin" type="Techsevin\CustomAddressAttribute\Plugin\ShippingInformationManagementPlugin" sortOrder="10"/>
     </type>
+    <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+               <item name="exampleSayHello" xsi:type="object">Techsevin\CustomAddressAttribute\Console\Sayhello</item>
+               <item name="changeOrderStatus" xsi:type="object">Techsevin\CustomAddressAttribute\Console\ChangeOrderStatus</item>
+           </argument>
+       </arguments>
+   </type>
 </config>

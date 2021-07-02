@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/** Grid menu xml
+ * @category  Techsevin
+ * @package   Techsevin_CustomerAddressAttribute
+ * @author    Techsevin
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://techsevin.com)
+ * @license   https://store.techsevin.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Techsevin_BannerSlider::banners_slider" title="BannerSlider" translate="title" module="Techsevin_BannerSlider" sortOrder="20" resource="Techsevin_BannerSlider::banners_slider"/>
+
+        <add id="Techsevin_BannerSlider::all_banners" title="All Banners" translate="title" module="Techsevin_BannerSlider" sortOrder="10" resource="Techsevin_BannerSlider::all_banners" parent="Techsevin_BannerSlider::banners_slider" action="techsevin_banners_slider/banner/index"/>
+
+        <add id="Techsevin_BannerSlider::all_groups" title="All Groups" translate="title" module="Techsevin_BannerSlider" sortOrder="10" resource="Techsevin_BannerSlider::all_groups" parent="Techsevin_BannerSlider::banners_slider" action="techsevin_banners_slider/group/index"/>
+
+    </menu>
+</config>

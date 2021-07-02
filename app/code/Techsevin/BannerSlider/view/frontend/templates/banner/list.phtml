@@ -1,0 +1,27 @@
+<?php
+/** @var \Techsevin\BannerSlider\Block\Widget\BannerSlider $block */
+$banners = $block->getBanners();
+?>
+<?php if ($banners->getSize()): ?>
+
+<p>Custom Banner</p>
+<div id="owl-demo">
+    <?php
+    foreach($banners as $banner){
+        ?>
+        <div class="item">
+            <?php
+            if($banner->getUrl()) { ?>
+                <a href="<?= $banner->getUrl(); ?>" title="<?= $banner->getName(); ?>">
+            <?php } ?>                  
+            <img src="<?= $banner->getImageUrl(); ?>" alt="<?= $banner->getName(); ?>">
+        <?php if($banner->getUrl()) { ?>
+            </a>
+            <?php } ?>
+        </div>
+        <?php
+    }
+    ?>
+</div>
+
+<?php endif; ?>

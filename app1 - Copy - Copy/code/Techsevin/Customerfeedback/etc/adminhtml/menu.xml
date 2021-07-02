@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/** Grid menu xml
+ * @category  Techsevin
+ * @package   Techsevin_Customerfeedback
+ * @author    Techsevin
+ * @copyright Copyright (c) 2010-2017 Webkul Software Private Limited (https://techsevin.com)
+ * @license   https://store.techsevin.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Techsevin_Customerfeedback::mymanager" title="Customer Feedback" module="Techsevin_Customerfeedback" sortOrder="10" resource="Techsevin_Customerfeedback::mymanager" />
+
+        <add id="Techsevin_Customerfeedback::customerfeedback" title="Customer Feedback" module="Techsevin_Customerfeedback" parent="Techsevin_Customerfeedback::mymanager" sortOrder="10" resource="Techsevin_Customerfeedback::customerfeedback" />
+
+        <add id="Techsevin_Customerfeedback::add_row" title="Show Customer Feedback" module="Techsevin_Customerfeedback" sortOrder="20" parent="Techsevin_Customerfeedback::customerfeedback" action="customerfeedback/customerfeedback" resource="Techsevin_Customerfeedback::add_row"/>
+
+        <add id="Techsevin_Customerfeedback::settings" title="Settings" translate="title" module="Techsevin_Customerfeedback" parent="Techsevin_Customerfeedback::mymanager" sortOrder="60" dependsOnModule="Techsevin_Customerfeedback" resource="Techsevin_Customerfeedback::settings"/>
+
+        <add id="Techsevin_Customerfeedback::customerfeedback_config" title="Configuration" translate="title" module="Techsevin_Customerfeedback" parent="Techsevin_Customerfeedback::settings" sortOrder="10" dependsOnModule="Techsevin_Customerfeedback" action="adminhtml/system_config/edit/section/customerfeedback" resource="Techsevin_Customerfeedback::customerfeedback_config"/>
+
+    </menu>
+</config>

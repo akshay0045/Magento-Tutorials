@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Solwin_Cpanel::js/home-slider.js"/>
+    </head>
     <referenceContainer name="content">
         <block class="Techsevin\Customerfeedback\Block\Websitefeedback" name="websitefeedback_index_index" template="Techsevin_Customerfeedback::websitefeedback_index_index.phtml" cacheable="false"/>
     </referenceContainer>

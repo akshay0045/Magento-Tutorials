@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <!-- <update handle="1column"/>
+    <container name="empty.container"></container> -->
+    <!-- <move element="logo" destination="empty.container" />
+    <referenceContainer name="empty.container" remove="true" /> -->
+
+    <!-- <move element="form.subscribe" destination="empty.container" />
+    <move element="minicart" destination="empty.container" />
+    <move element="form.subscribe.footer" destination="empty.container" />
+    <move element="breadcrumbs" destination="empty.container" />
+    <move element="page.main.title" destination="empty.container" />
+    <move element="page.top" destination="header-wrapper" />
+    <referenceContainer name="empty.container" remove="true" /> -->
+</layout>

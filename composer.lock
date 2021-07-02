@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1f65bd6811ec8b034b0bb7bcfcae319",
+    "content-hash": "c78f3ffc30e800aa9bc20a323d3b9411",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -17612,6 +17612,102 @@
                 "source": "https://github.com/magento/zf1/tree/1.14.5"
             },
             "time": "2020-12-02T21:12:59+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.4.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "d050c9f35b04197e97b6747d7dbf1f164b1f26fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/d050c9f35b04197e97b6747d7dbf1f164b1f26fe",
+                "reference": "d050c9f35b04197e97b6747d7dbf1f164b1f26fe",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "support": {
+                "issues": "https://github.com/mageplaza/module-core/issues",
+                "source": "https://github.com/mageplaza/module-core/tree/v1.4.10"
+            },
+            "time": "2020-12-07T08:10:17+00:00"
+        },
+        {
+            "name": "mageplaza/module-smtp",
+            "version": "4.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-smtp.git",
+                "reference": "fce6c599157754a513e8bf38fe15cca20a5c6ece"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-smtp/zipball/fce6c599157754a513e8bf38fe15cca20a5c6ece",
+                "reference": "fce6c599157754a513e8bf38fe15cca20a5c6ece",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.4.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Smtp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "SMTP Extension for Magento 2 helps the owner of store simply install SMTP (Simple Mail Transfer Protocol) server which transmits the messages into codes or numbers",
+            "keywords": [
+                "email settings",
+                "gmail smtp",
+                "magento 2",
+                "magento 2 smtp",
+                "magento smtp",
+                "mageplaza",
+                "smtp"
+            ],
+            "support": {
+                "issues": "https://github.com/mageplaza/magento-2-smtp/issues",
+                "source": "https://github.com/mageplaza/magento-2-smtp/tree/v4.4.1"
+            },
+            "time": "2021-06-22T03:16:26+00:00"
         },
         {
             "name": "monolog/monolog",

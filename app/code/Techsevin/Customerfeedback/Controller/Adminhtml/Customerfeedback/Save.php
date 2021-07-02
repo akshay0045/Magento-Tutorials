@@ -1,6 +1,4 @@
 <?php
-
-
 namespace Techsevin\Customerfeedback\Controller\Adminhtml\Customerfeedback;
 
 use Magento\Framework\Exception\LocalizedException;
@@ -16,11 +14,10 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
-        parent::__construct($context, $coreRegistry);
+        parent::__construct($context);
     }
 
     /**
@@ -60,9 +57,9 @@ class Save extends \Magento\Backend\App\Action
                 }
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
+                $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the Pincode.'));
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Pincode.'));
             }
         
             $this->dataPersistor->set('customerfeedback_allcustomerfeedback', $data);

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../app/code/Magento/Webapi/etc/webapi.xsd">
+    <route method="POST" url="/V1/custom/custom-api/">
+        <service class="Techsevin\CustomApi\Api\CustomInterface" method="getPost"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route method="GET" url="/V1/custom/customerfeedback/">
+        <service class="Techsevin\CustomApi\Api\CustomerFeedbackInterface" method="getFeedback"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/custom/:feedbackId" method="GET">
+        <service class="Techsevin\CustomApi\Api\CustomerFeedbackLinkManagementInterface" method="getAssignedFeedback" />
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

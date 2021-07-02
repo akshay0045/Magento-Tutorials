@@ -7,6 +7,7 @@ class ShippingInformationManagementPlugin
     protected $subscriberFactory;
     protected $extensionAttributesFactory;
     protected $observer;
+    protected $addressRepository;
 
     public function __construct(
         \Magento\Quote\Model\QuoteRepository $quoteRepository,
@@ -30,21 +31,74 @@ class ShippingInformationManagementPlugin
         $cartId,
         \Magento\Checkout\Api\Data\ShippingInformationInterface $addressInformation
     ) {
-        $extAttributes = $addressInformation->getExtensionAttributes();
-
-        //$customAddressType = $extAttributes->getCustomAddressType();
-
-        $shippingAddress = $addressInformation->getShippingAddress();
         
-        if ($extAttributes) {
-            //$quote = $this->quoteRepository->getActive($cartId);
-            $customAddressType = $extAttributes->getCustomAddressType();
-            $shippingAddress->setCustomAddressType( $customAddressType );
-            //$quote->getBillingAddress()->setCustomAddressType( $customAddressType );
-            //$quote->getShippingAddress()->setCustomAddressType( $customAddressType );
+        $extAttributes = $addressInformation->getExtensionAttributes();   
+        
+        $shippingAddress = $addressInformation->getShippingAddress();
+
+        if($shippingAddress->getData() != null) {
+            if($shippingAddress->getData('save_in_address_book') == 1) {
+
+                $om = \Magento\Framework\App\ObjectManager::getInstance();  
+                $customerSession = $om->get('Magento\Customer\Model\Session');  
+                $customerId = $customerSession->getCustomer()->getId();
+                $addresss = $om->get('\Magento\Customer\Model\AddressFactory');
+                $address = $addresss->create();
+
+                $regionId =$shippingAddress->getData('region_id');
+
+                $address->setCustomerId($customerId)
+
+                ->setFirstname($shippingAddress->getData('firstname'))
+
+               ->setLastname($shippingAddress->getData('lastname'))
+
+                ->setCountryId($shippingAddress->getData('country_id'))
+
+                ->setPostcode($shippingAddress->getData('postcode'))
+
+                ->setCity($shippingAddress->getData('city'))
+
+                ->setRegionId($regionId)
+
+                //->setRegion('Gujarat')
+
+                ->setTelephone($shippingAddress->getData('telephone'))
+
+                ->setCompany($shippingAddress->getData('company'))
+
+                ->setStreet($shippingAddress->getData('street'))
+
+                ->setIsDefaultBilling('0')
+
+                ->setIsDefaultShipping('0')
+
+                ->setSaveInAddressBook('1');
+
+                if ($extAttributes) {
+
+                    $address->setCustomAddressType($extAttributes->getCustomAddressType());
+                }
+
+                $address->save(); 
+
+                $shippingAddress->setSaveInAddressBook('0');
+
+            }
         }
 
-        //echo '<pre/>'; print_r($quote->getBillingAddress()->getData()); exit;
+        $billingAddress = $addressInformation->getBillingAddress();
+        
+        if ($extAttributes) {
+            $quote = $this->quoteRepository->getActive($cartId);
+            $customAddressType = $extAttributes->getCustomAddressType();
+            $shippingAddress->setCustomAddressType( $customAddressType );
+            $billingAddress->setCustomAddressType( $customAddressType );
 
+            $quote->getBillingAddress()->setCustomAddressType( $customAddressType );
+            $quote->getShippingAddress()->setCustomAddressType( $customAddressType );
+        }
+        
+        //echo "<pre>"; get_class_methods($this->observer->getEvent()); die();
     }
 }

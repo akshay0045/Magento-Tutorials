@@ -1,0 +1,22 @@
+<?php
+echo $block->getText();
+$banners = $block->getBanner();
+?>
+<div id="owl-demo">
+	<?php
+	foreach($banners as $banner){
+		?>
+		<div class="item">
+			<?php
+			if($banner->getUrl()) { ?>
+				<a href="<?= $banner->getUrl(); ?>" title="<?= $banner->getName(); ?>">
+			<?php }	?>          		
+			<img src="<?= $banner->getImageUrl(); ?>" alt="<?= $banner->getName(); ?>">
+		<?php if($banner->getUrl()) { ?>
+			</a>
+			<?php } ?>
+		</div>
+		<?php
+	}
+	?>
+</div>

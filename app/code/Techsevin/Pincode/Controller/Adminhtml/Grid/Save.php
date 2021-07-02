@@ -16,11 +16,10 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
-        parent::__construct($context, $coreRegistry);
+        parent::__construct($context);
     }
 
     /**
@@ -44,7 +43,7 @@ class Save extends \Magento\Backend\App\Action
             $model = $this->_objectManager->create('Techsevin\Pincode\Model\Pincode')->load($id);
 
             if (!$model->getId() && $id) {
-                $this->messageManager->addError(__('This Pincode no longer exists.'));
+                $this->messageManager->addErrorMessage(__('This Pincode no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
         
@@ -52,7 +51,7 @@ class Save extends \Magento\Backend\App\Action
         
             try {
                 $model->save();
-                $this->messageManager->addSuccess(__('You saved the Pincode.'));
+                $this->messageManager->addSuccessMessage(__('You saved the Pincode.'));
                 $this->dataPersistor->clear('pincode_allpincode');
         
                 if ($this->getRequest()->getParam('back')) {
@@ -60,9 +59,9 @@ class Save extends \Magento\Backend\App\Action
                 }
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
-                $this->messageManager->addError($e->getMessage());
+                $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the Pincode.'));
+                $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Pincode.'));
             }
         
             $this->dataPersistor->set('pincode_allpincode', $data);

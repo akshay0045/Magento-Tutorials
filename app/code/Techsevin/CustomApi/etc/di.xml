@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Techsevin\CustomApi\Api\CustomInterface" type="Techsevin\CustomApi\Model\Api\Custom"/>
+    <preference for="Techsevin\CustomApi\Api\CustomerFeedbackInterface" type="Techsevin\CustomApi\Model\Api\CustomerFeedback"/>
+    <preference for="Techsevin\CustomApi\Api\CustomerFeedbackLinkManagementInterface" type="Techsevin\CustomApi\Model\Api\CustomerFeedbackLinkManagement"/>
+</config>

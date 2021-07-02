@@ -3,7 +3,7 @@
     <extension_attributes for="Magento\Sales\Api\Data\OrderAddressInterface">
         <attribute code="custom_address_type" type="string" />
     </extension_attributes>
-    <extension_attributes for="Magento\Customer\Api\Data\AddressInterfacee">
+    <extension_attributes for="Magento\Customer\Api\Data\AddressInterface">
         <attribute code="custom_address_type" type="string" />
     </extension_attributes>
     <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
