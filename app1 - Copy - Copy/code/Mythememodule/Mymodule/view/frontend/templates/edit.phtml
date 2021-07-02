@@ -1,8 +1,0 @@
-<h1>Edit Artical Data</h1>
-<?php $d = $block->getSingleArtical() ?>
-<form action="<?= $block->getUrl('mymodule/index/edit').$d->getArticleId(); ?>" method="post">
-    <input name="article_subject" type="text" value="<?php echo $d->getArticleSubject (); ?>">
-    <input name="content" type="text" value="<?php echo $d->getContent (); ?>">
-    <input name="id" type="hidden" value="<?php echo $d->getArticleId(); ?>">
-    <input type="submit" value="Send Artical Data">
-</form>
