@@ -56,7 +56,6 @@ class Output
             $textLinkUrl = $this->_urlInterface->getUrl('catalogsearch/result', ['q' => $textLink]);
             $result = preg_replace('/' . $textLink . '/i', '<a href="' . $textLinkUrl . '"><b>' . $textLink . '</b></a>', $result);
         }
-        print_r($result);
         return $result;
     }
 }
