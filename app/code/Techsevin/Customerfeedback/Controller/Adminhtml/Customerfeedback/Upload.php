@@ -1,11 +1,15 @@
 <?php
+
 namespace Techsevin\Customerfeedback\Controller\Adminhtml\Customerfeedback;
 
 use Magento\Framework\Controller\ResultFactory;
 
-class Filesubmission extends \Magento\Backend\App\Action
+
+class Upload extends \Magento\Backend\App\Action
 {
-    public $imageUploader;
+
+    protected $imageUploader;
+
 
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -15,12 +19,12 @@ class Filesubmission extends \Magento\Backend\App\Action
         $this->imageUploader = $imageUploader;
     }
 
-    
     public function execute()
     {
+        $imageId = $this->_request->getParam('param_name', 'image');
         try {
-			//In Following Line "filesubmission" is FILE FIELD NAME
-            $result = $this->imageUploader->saveFileToTmpDir('image');
+            $result = $this->imageUploader->saveFileToTmpDir($imageId);
+
             $result['cookie'] = [
                 'name' => $this->_getSession()->getName(),
                 'value' => $this->_getSession()->getSessionId(),

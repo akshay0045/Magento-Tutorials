@@ -1,11 +1,13 @@
 <?php
+
 namespace Techsevin\Customerfeedback\Controller\Adminhtml\Customerfeedback;
 
+use Laminas\Validator\InArray;
 use Magento\Framework\Exception\LocalizedException;
 
 class Save extends \Magento\Backend\App\Action
 {
-
+    const IMAGE_PATH = "techsevin/customerfeedback";
     protected $dataPersistor;
 
     /**
@@ -36,22 +38,30 @@ class Save extends \Magento\Backend\App\Action
                 $data['pk_i_id'] = null;
             }
 
+            $imageName = '';
+            if (!empty($data['image'])) {
+
+                $imageName = str_replace('techsevin/customerfeedback', "", $data['image'][0]['name']);
+
+                $data['image'] = Save::IMAGE_PATH . $imageName;
+            }
+
             $id = $this->getRequest()->getParam('pk_i_id');
-        
+
             $model = $this->_objectManager->create('Techsevin\Customerfeedback\Model\Customerfeedback')->load($id);
 
             if (!$model->getId() && $id) {
                 $this->messageManager->addError(__('This Feedback no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
-        
+
             $model->setData($data);
-        
+
             try {
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved the Pincode.'));
                 $this->dataPersistor->clear('customerfeedback_allcustomerfeedback');
-        
+
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['pk_i_id' => $model->getId()]);
                 }
@@ -61,7 +71,7 @@ class Save extends \Magento\Backend\App\Action
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Pincode.'));
             }
-        
+
             $this->dataPersistor->set('customerfeedback_allcustomerfeedback', $data);
             return $resultRedirect->setPath('*/*/edit', ['pk_i_id' => $this->getRequest()->getParam('pk_i_id')]);
         }

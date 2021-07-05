@@ -46,14 +46,14 @@ require(['jquery', 'cpowlcarousel'], function ($) {
             navigation: true,
         });
         $("#owl-demo").owlCarousel({
-          autoPlay: 3000, //Set AutoPlay to 3 seconds
-     
-          items : 1,
-          itemsDesktop : [1199,3],
-          itemsDesktopSmall : [979,3],
-          stopOnHover : true,
-          navigationText: ['<div class="lft-btn"><i class="fa fa-angle-left"></i></div>', '<div class="rgt-btn"><i class="fa fa-angle-right"></div>'],
-          navigation: true,
+            autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+            items: 1,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [979, 3],
+            stopOnHover: true,
+            navigationText: ['<div class="lft-btn"><i class="fa fa-angle-left"></i></div>', '<div class="rgt-btn"><i class="fa fa-angle-right"></div>'],
+            navigation: true,
         });
     });
 });

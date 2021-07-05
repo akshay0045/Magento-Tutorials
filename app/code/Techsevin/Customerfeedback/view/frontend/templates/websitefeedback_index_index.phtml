@@ -2,66 +2,68 @@
 $allwebsitefeedback = $block->getAllwebsitefeedback();
 //print_r($allwebsitefeedback->getData());
 
-if(count($allwebsitefeedback)>0){
+if (count($allwebsitefeedback) > 0) {
 
-    ?>
+?>
     <p>Customer Review</p>
-<div class="hpb-main pad-main">
-    <div class="block-title-main">
-        <div class="title-border">&nbsp;</div>
-    </div>
-    <div style="margin: 0 -10px;">
-        <div class="hpb-main hpb-slider">
-            <?php
-           
-            foreach ($allwebsitefeedback as $key => $feedback) {
-                /* echo $feedback->getData('customer_name');
+    <div class="hpb-main pad-main">
+        <div class="block-title-main">
+            <div class="title-border">&nbsp;</div>
+        </div>
+        <div style="margin: 0 -10px;">
+            <div class="hpb-main hpb-slider">
+                <?php
+
+                foreach ($allwebsitefeedback as $key => $feedback) {
+                    /* echo $feedback->getData('customer_name');
                 echo $feedback->getData('customer_subject');
                 echo $feedback->getData('customer_message');
                 echo $feedback->getData('rating');
                 echo $block->getBaseUrl(). "/media/" . $feedback->getData('image'); */
                 ?>
-                <div class="hpb-inner">
-                    <div class="hpb-img">
-                        <a href="#"> 
-                            <img class="img-resp center-b" src="<?= $block->getBaseUrl(). "/media/" . $feedback->getData('image') ?>" alt="img-400-250"> 
-                        </a>
-                    </div>
-                    <div class="hpb-content-main">
-                        <div class="hpb-content">
-                            <h2><?= $block->escapeHtml($feedback->getData('customer_name')) ?></h2>
-                            <p><strong><?=  $block->escapeHtml($feedback->getData('customer_subject')); ?></strong></p>
-                            <p><?= $block->escapeHtml($feedback->getData('customer_message')); ?></p>
+                    <div class="hpb-inner">
+                        <div class="hpb-img">
+                            <a href="#">
+                                <img class="img-resp center-b" src="<?= $block->getBaseUrl() . "/media/" . $feedback->getData('image') ?>" alt="img-400-250">
+                            </a>
                         </div>
-                        <div class="hpb-info">
-                            <span class="hpb-poster"> 
-                                <em><?= $block->escapeHtml($feedback->getData('rating')); ?></em> 
-                            </span> 
-                            <span class="readmore"> 
-                                <a href="#"><?= $block->escapeHtml($feedback->getData('customer_phone')); ?></a> 
-                            </span>
+                        <div class="hpb-content-main">
+                            <div class="hpb-content">
+                                <h2><?= $block->escapeHtml($feedback->getData('customer_name')) ?></h2>
+                                <p><strong><?= $block->escapeHtml($feedback->getData('customer_subject')); ?></strong></p>
+                                <p><?= $block->escapeHtml($feedback->getData('customer_message')); ?></p>
+                            </div>
+                            <div class="hpb-info">
+                                <span class="hpb-poster">
+                                    <em><?= $block->escapeHtml($feedback->getData('rating')); ?></em>
+                                </span>
+                                <span class="readmore">
+                                    <a href="#"><?= $block->escapeHtml($feedback->getData('customer_phone')); ?></a>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php
-            }
-            ?>
+                <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
-</div>
-<?php
-    if ($block->getPagerHtml()){
-            ?>
-                <div class="order-products-toolbar toolbar">
-                    <?= $block->getPagerHtml() ?>
-                </div>
-            <?php
-        }
+    <?php
+    if ($block->getPagerHtml()) {
+    ?>
+        <div>
+            <div class="order-products-toolbar toolbar" style="position: static;">
+                <?= $block->getPagerHtml() ?>
+            </div>
+        </div>
+    <?php
+    }
 } else {
     ?>
     <div class="message info empty">
         <span><?= $block->escapeHtml('You have no data in table.') ?></span>
     </div>
-    <?php  
-} 
+<?php
+}
 ?>

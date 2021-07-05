@@ -1,61 +1,62 @@
 <?php
+
 namespace Techsevin\Customerfeedback\Model;
 
 class ImageUploader
 {
-	 /**
+    /**
      * @var string
-	 * "requestaquote" Image upload directory in pub/media/requestaquote
+     * "requestaquote" Image upload directory in pub/media/requestaquote
      */
     const IMAGE_BASE_PATH = 'techsevin/customerfeedback';
-	
-	/**
+
+    /**
      * Core file storage database
      *
      * @var \Magento\MediaStorage\Helper\File\Storage\Database
      */
     private $coreFileStorageDatabase;
-	
-	/**
+
+    /**
      * Media directory object (writable).
      *
      * @var \Magento\Framework\Filesystem\Directory\WriteInterface
      */
     private $mediaDirectory;
-	
-	/**
+
+    /**
      * Uploader factory
      *
      * @var \Magento\MediaStorage\Model\File\UploaderFactory
      */
     private $uploaderFactory;
-	
+
     /**
      * Base path
      *
      * @var string
      */
     protected $basePath;
-	
-	/**
+
+    /**
      * Allowed extensions
      *
      * @var string
-    */
+     */
     public $allowedExtensions;
-	/**
+    /**
      * Store manager
      *
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-	private $storeManager;
-	
-	/**
+    private $storeManager;
+
+    /**
      * @var \Psr\Log\LoggerInterface
      */
-	private $logger;
+    private $logger;
 
-	/**
+    /**
      * @param Database $coreFileStorageDatabase
      * @param Filesystem $filesystem
      * @param UploaderFactory $uploaderFactory
@@ -64,8 +65,8 @@ class ImageUploader
      * @param $basePath
      * @param array $allowedExtensions
      * @throws \Magento\Framework\Exception\FileSystemException
-    */
-	 
+     */
+
     public function __construct(
         \Magento\MediaStorage\Helper\File\Storage\Database $coreFileStorageDatabase,
         \Magento\Framework\Filesystem $filesystem,
@@ -78,42 +79,28 @@ class ImageUploader
         $this->uploaderFactory = $uploaderFactory;
         $this->storeManager = $storeManager;
         $this->logger = $logger;
-		$this->basePath = $basePath;
-        $this->allowedExtensions= $allowedExtensions;
-    }
-
-    public function setBasePath($basePath)
-    {
-        $this->basePath = $basePath;
-    }
-	
-	public function getBasePath()
-    {
-        return $this->basePath;
-    }
-
-    public function setAllowedExtensions($allowedExtensions)
-    {
-        $this->allowedExtensions = $allowedExtensions;
-    }
-
-    public function getAllowedExtensions()
-    {
-        return $this->allowedExtensions;
     }
 
     public function getFilePath($path, $imageName)
     {
         return rtrim($path, '/') . '/' . ltrim($imageName, '/');
     }
-	
-	public function saveFileToTmpDir($fileId)
+
+    public function saveFileToTmpDir($fileId)
     {
-        $basePath = $this->getBasePath();
-        $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
-        $uploader->setAllowedExtensions($this->getAllowedExtensions());
+        $basePath = "techsevin/customerfeedback/";
+        $uploader = $this->uploaderFactory->create(['fileId' => 'image']);
+
+        $uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
+
         $uploader->setAllowRenameFiles(true);
-        $result = $uploader->save($this->mediaDirectory->getAbsolutePath($basePath));
+
+        $uploader->setFilesDispersion(true);
+
+        $path = $this->mediaDirectory->getAbsolutePath($basePath);
+
+        $result = $uploader->save($path);
+
         if (!$result) {
             throw new \Magento\Framework\Exception\LocalizedException(
                 __('File can not be saved to the destination folder.')
@@ -123,15 +110,15 @@ class ImageUploader
         $result['tmp_name'] = str_replace('\\', '/', $result['tmp_name']);
         $result['path'] = str_replace('\\', '/', $result['path']);
         $result['url'] = $this->storeManager
-                ->getStore()
-                ->getBaseUrl(
-                    \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-                ) . $this->getFilePath($basePath, $result['file']);
+            ->getStore()
+            ->getBaseUrl(
+                \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
+            ) . $this->getFilePath($basePath, $result['file']);
         $result['name'] = $result['file'];
         if (isset($result['file'])) {
             try {
                 $relativePath = rtrim($basePath, '/') . '/' . ltrim($result['file'], '/');
-				$this->coreFileStorageDatabase->saveFile($relativePath);
+                $this->coreFileStorageDatabase->saveFile($relativePath);
             } catch (\Exception $e) {
                 $this->logger->critical($e);
                 throw new \Magento\Framework\Exception\LocalizedException(

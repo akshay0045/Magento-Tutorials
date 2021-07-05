@@ -1,8 +1,12 @@
 <?php
+
 namespace Techsevin\Customerfeedback\Model\Customerfeedback;
 
 use Techsevin\Customerfeedback\Model\ResourceModel\Customerfeedback\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Framework\App\ObjectManager;
+use Techsevin\Customerfeedback\Model\Customerfeedback\FileInfo;
+use Magento\Framework\Filesystem;
 
 /**
  * Class DataProvider
@@ -23,6 +27,12 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      * @var array
      */
     protected $loadedData;
+
+    /**
+     * @var Filesystem
+     */
+    private $fileInfo;
+
 
     /**
      * @param string $name
@@ -73,6 +83,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $items = $this->collection->getItems();
         /** @var $customerfeedback \Techsevin\Customerfeedback\Model\Customerfeedback */
         foreach ($items as $customerfeedback) {
+            $customerfeedback = $this->convertValues($customerfeedback);
             $this->loadedData[$customerfeedback->getId()] = $customerfeedback->getData();
         }
 
@@ -83,7 +94,42 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $this->loadedData[$customerfeedback->getId()] = $customerfeedback->getData();
             $this->dataPersistor->clear('customerfeedback_allcustomerfeedback');
         }
-
         return $this->loadedData;
+    }
+
+    /**
+     * Converts image data to acceptable for rendering format
+     *
+     * @param \Techsevin\Customerfeedback\Model\Customerfeedback $customerfeedback
+     * @return \PHPCuTechsevinong\customerfeedback\Model\Customerfeedback $customerfeedback
+     */
+    private function convertValues($customerfeedback)
+    {
+        $fileName = $customerfeedback->getImage();
+        $image = [];
+        if ($this->getFileInfo()->isExist($fileName)) {
+            $stat = $this->getFileInfo()->getStat($fileName);
+            $mime = $this->getFileInfo()->getMimeType($fileName);
+            $image[0]['name'] = $fileName;
+            $image[0]['url'] = $customerfeedback->getImageUrl();
+            $image[0]['size'] = isset($stat) ? $stat['size'] : 0;
+            $image[0]['type'] = $mime;
+        }
+        $customerfeedback->setImage($image);
+        return $customerfeedback;
+    }
+
+    /**
+     * Get FileInfo instance
+     *
+     * @return FileInfo
+     *
+     */
+    private function getFileInfo()
+    {
+        if ($this->fileInfo === null) {
+            $this->fileInfo = ObjectManager::getInstance()->get(FileInfo::class);
+        }
+        return $this->fileInfo;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Techsevin\Customerfeedback\Controller\Index;
 
 use \Techsevin\Customerfeedback\Model\CustomerfeedbackFactory;
@@ -23,8 +24,7 @@ class Index extends \Magento\Framework\App\Action\Action
 		\Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
 		Filesystem $filesystem,
 		CustomerfeedbackFactory $customerfeedbackFactory
-		)
-	{
+	) {
 		$this->_pageFactory = $pageFactory;
 		$this->_customerfeedbackFactory = $customerfeedbackFactory;
 		$this->_fileUploaderFactory = $fileUploaderFactory;
@@ -37,11 +37,11 @@ class Index extends \Magento\Framework\App\Action\Action
 		if ($this->getRequest()->isPost()) {
 
 			$uploader = $this->_fileUploaderFactory->create(['fileId' => 'image']);
-		 
+
 			$uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
-			
+
 			$uploader->setAllowRenameFiles(true);
-			
+
 			$uploader->setFilesDispersion(true);
 
 			$path = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('techsevin/customerfeedback/');
@@ -49,10 +49,11 @@ class Index extends \Magento\Framework\App\Action\Action
 			$result = $uploader->save($path);
 			if (!$result) {
 				throw new LocalizedException(
+
 					__('File cannot be saved to path: $1', $path)
 				);
 			}
-			$imagePath = 'techsevin/customerfeedback'.$result['file'];
+			$imagePath = 'techsevin/customerfeedback' . $result['file'];
 
 			$input = $this->getRequest()->getPostValue();
 
@@ -61,18 +62,15 @@ class Index extends \Magento\Framework\App\Action\Action
 			$input['image'] = $imagePath;
 
 			$customerFeedbackData = $this->_customerfeedbackFactory->create();
-			
+
 			$customerFeedbackData->setData($input)->save();
 
 			$this->messageManager->addSuccessMessage(__("Data Inserted Successfully."));
 
-            return $this->_redirect('customerfeedback');
-
-		
+			return $this->_redirect('customerfeedback');
 		} else {
 			$resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 			return $this->_pageFactory->create();
-
 		}
 	}
 }

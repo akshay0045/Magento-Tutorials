@@ -1,16 +1,19 @@
 <?php
+
 namespace Techsevin\Customerfeedback\Model\Customerfeedback;
+
 use Magento\Framework\UrlInterface;
 use Magento\Framework\Filesystem;
 use Magento\Framework\App\Filesystem\DirectoryList;
+
 class Image
 {
     /**
      * media sub folder
      * @var string
      */
-    protected $subDir = 'techsevin/customerfeedback/'; //actual path is pub/media/webkul/image 
-    
+    protected $subDir = 'techsevin/customerfeedback/';
+
     /**
      * url builder
      *
@@ -28,8 +31,7 @@ class Image
     public function __construct(
         UrlInterface $urlBuilder,
         Filesystem $fileSystem
-    )
-    {
+    ) {
         $this->urlBuilder = $urlBuilder;
         $this->fileSystem = $fileSystem;
     }
